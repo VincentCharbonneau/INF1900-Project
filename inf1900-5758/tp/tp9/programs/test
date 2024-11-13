@@ -1,0 +1,24 @@
+# LED + boucle
+dbt ;
+dbc 2 ;
+dal 2 ;
+att 10 ;
+dal 1 ; 
+att 10 ;
+det ;
+att 10 ;
+fbc ;
+# avancer + reculer + son
+mav 255 ;
+att 40 ;
+sgo 54 ;
+mre 255 ;
+att 40 ;
+sar ;
+# arreter + tourner gauche + tourner droite
+mar ;
+att 40 ;
+trg ;
+att 40 ;
+trd ;
+fin ;

@@ -1,0 +1,158 @@
+*.o
+*.d
+*.map
+*.hex
+*.elf
+*.a
+.vscode
+
+# Standard gitignore for Visual Studio C++ projects
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+*.exe
+*.dll
+*.so
+*.dylib
+*.lai
+*.la
+*.a
+*.lib
+*.pdb
+
+# Compiled Static libraries
+*.lbp
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static and Dynamic libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+# Debug files
+*.dSYM/
+*.su
+*.idb
+*.pdb
+*.ilk
+
+# Kernel Module Compile Results
+*.mod*
+*.cmd
+.tmp_versions/
+modules.order
+Module.symvers
+Mkfile.old
+dkms.conf
+
+# Folders
+bin/
+obj/
+[Bb]uild/
+[Bb]uilds/
+[Bb]in/
+[Ll]ibs/
+[Ll]og/
+[Ll]ogs/
+[Tt]emp/
+[Tt]mp/
+[Tt]est/
+
+# Visual Studio cache/options directory
+.vs/
+# Visual Studio project files
+*.csproj
+*.vbproj
+*.vcxproj
+*.vcxproj.filters
+*.sln
+*.suo
+*.user
+*.userosscache
+*.aps
+*.pch
+*.vspscc
+*_i.c
+*_p.c
+*.ncb
+*.tlb
+*.tlh
+*.bak
+*.cache
+*.ilk
+*.log
+*.lib
+*.sbr
+*.sdf
+*.pyc
+*.pyo
+*.pyd
+*.scd
+*.ncb
+*.sdf
+*.suo
+*.opensdf
+*.sln.docstates
+*.userprefs
+
+# ReSharper
+_ReSharper*/
+
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Mono Auto Generated Files
+mono_crash.*
+
+# Windows image files
+Thumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
+# Visual Studio 6 auto-generated workspace file (contains build state)
+*.plg
+*.vbw
+
+# Visual Studio LightSwitch build output
+**/*.HTMLClient/GeneratedArtifacts
+**/*.DesktopClient/GeneratedArtifacts
+**/*.DesktopClient/ModelManifest.xml
+**/*.Server/GeneratedArtifacts
+**/*.Server/ModelManifest.xml
+_Pvt_Extensions

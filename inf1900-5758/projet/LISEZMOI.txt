@@ -1,0 +1,60 @@
+Robot Mekhani
+
+Robot 1 :
+Au début, la méthode init() est appelée, pour initialiser le timer du robot.
+Ensuite, on rentre dans la méthode periodic(), qui est la machine à états du robot.
+On commence à l'état FIND_POSITION, qui permet au robot de lire sa distance initiale 
+par rapport au mur devant lui.
+
+Dans l'état FORWARD, on veut se rendre au point rouge, donc dépendamment de la distance
+entre le mur, et notre valeur de comparaison au milieu, on avance ou on recule.
+La différence entre la position relative du robot et le milieu de la boite est calculée
+et permet de savoir si on doit arrêter.
+
+L'état TURN permet de tourner le robot une première fois­. La méthode turnUntilVoid() permet
+de trouver l'ouverture et d'arrêter si c'est le cas, sinon on sait qu'on doit tourner une deuxième fois.
+Aussi, selon si on doit continuer à tourner ou non, on sait de quel côté le robot était.
+Si on doit continuer à tourner, on se rend dans l'état SECOND_TURN, qui permet de tourner jusqu'à trouver 
+l'ouverture grâce à la méthode turnUntilVoid().
+
+Quand on a trouvé l'ouverture, on se rend dans l'état WAIT. Rendu là, on a toutes les informations nécessaires
+pour trouver la position initiale du robot dans la boite. Ensuite, on attend de peser sur le bouton.
+Quand on appuie sur le bouton, on se rend dans l'état RECEIVE. Cet état, en plus d'éteindre
+la DEL, appelle périodiquement la fonction readMessage() de IRReceiver qui permet d'activer le capteur.
+
+Lorsque le capteur est actif, le robot peut recevoir des "trames" dans sa méthode consumeTrame. Une trame
+est une valeur de 7 bits (stockée dans un uint8_t) reçue par infrarouge avec le protocole SONY SIRC.
+La méthode consumeTrame s'occupe de la logique du traitement des trames reçues pour en extraire des lignes
+et vérifier leur validité. 
+
+Une fois que la méthode consumeTrame comprend qu'elle a reçu toutes les lignes, ou lorsque l'une de nos
+deadlines est atteinte, on passe en mode TRANSMIT si des lignes ont bien été reçues, ou on retourne en
+mode WAIT dans le cas contraire, après avoir émis la tonalité.
+Le mode TRANSMIT attend que le bouton soit appuyé, puis affiche la carte sur serieViaUSB, avec la position
+des lignes qu'il a reçu et sa position et son orientation initiale.
+
+
+
+Robot 2 :
+Ce robot est conçu en machine à état. Dans son état initial, il effectue un suivi de ligne jusqu'à ce que 
+le capteur de ligne détecte le premier virage. Après avoir tourné de 90 degrés dans le sens horaire, il se met
+en mode EXPLORING.
+
+Dans ce mode, il commence à incrémenter un compteur de distance. Lorsque le robot détecte
+une ligne à droite dans ce mode, il stop le compteur et commence un manœuvre de 90 degrés. Si après un certain
+temps, le robot ne détecte pas de ligne et effectue en tout un 180 degrés, il effectue un 180 degrés, puis 
+continue son chemin. Il enregistre la ligne comme une petite ligne. Si à l'inverse, il détecte une ligne avant
+que le timer arrivée ait une certaine valeur, il se met en mode SCANNING.
+
+En SCANNING, il débute par prendre la valeur d'un timer, puis effectue un suivie de ligne jusqu'à ce qu'il ne voit 
+plus de ligne. Il prend alors la valeur du timer et effectue la différence pour trouver la longueur de la ligne.
+Ensuite, il recule jusqu'à ce que ces 5 capteurs soient actifs. Il effectue ensuite un 90 degrés vers la gauche
+et retourne en mode EXPLORING.
+
+La deuxième possibilité de SCANNING est de voir une ligne à gauche. Si c'est le cas, il effectue un 90 degrés vers 
+la gauche, avance un peu et entre en mode DONE. 
+
+Si on appuie sur le bouton INTERRUPT, le robot envoie ces donnes en infrarouge en suivant le protocole SIRC.
+Si on appuie sur le gros bouton blanc, le robot envoie ses informations via RS-232. 
+
+Après une de ces deux actions, il retourne en mode DONE, ou "waiting".
